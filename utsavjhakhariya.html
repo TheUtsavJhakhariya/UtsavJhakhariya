@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<style>
+ 
+/* Reset and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and HTML to ensure no overflow */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Neue Montreal";
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Pre-loader styles */
+.pre-loader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 400px;
+  z-index: 2;
+  color: #fff;
+}
+
+.count {
+  flex: 2;
+  text-align: right;
+  line-height: 1;
+  padding: 0 1em;
+}
+
+.copy {
+  flex: 6;
+  font-family: "PP Editorial Old";
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ml16 {
+  overflow: hidden;
+}
+
+.ml16 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.loader-bg, .loader-2 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: red; /* For .loader-bg */
+  /* .loader-2 uses an image background */
+}
+
+.loader-2 {
+  background-color: #000;
+  background-size: cover;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Site content and navigation styles */
+.site-content {
+  position: relative;
+  z-index: -2;
+}
+
+/* Navigation and Logo Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333; /* Dark background for the navbar */
+  color: #fff;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.logo a {
+  color: #ffffff; /* A bright color for the logo */
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none; /* Hidden by default, shown in responsive design */
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+}
+
+/* Container holding the list */
+.links {
+  text-align: center;
+}
+
+/* Unordered List Style */
+.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center the list items */
+  gap: 20px; /* Space between items */
+}
+
+/* List Item Style */
+.links li {
+  display: inline-block;
+}
+
+/* Link Style */
+.links a {
+  text-decoration: none;
+  color: #555; /* Dark grey color for text */
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 5px; /* Slightly rounded corners for the links */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover and Focus Styles for Links */
+.links a:hover, .links a:focus {
+  background-color: #f0f0f0; /* Light grey background on hover */
+  color: #000; /* Change text color on hover */
+}
+
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+  .links {
+    display: none; /* Hide links on small screens */
+  }
+
+  .menu-toggle {
+    display: flex; /* Show menu toggle on small screens */
+  }
+}
+
+
+/* Header and footer styles */
+.header {
+  display: flex;
+  padding: 1em;
+}
+
+.header h1 {
+  flex: 1;
+  position: relative;
+  font-size: 15vw;
+  font-family: "PP Editorial Old";
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 20vw; /* Adjust font size for very small devices */
+  }
+
+  nav .links, .footer-nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .loader-content, .footer-copy p, .footer-nav {
+    width: auto; /* Adjust width to prevent overflow */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .img {
+    max-width: 100%; /* Ensure images do not overflow */
+    height: auto;
+  }
+}
+
+
+.name h1{
+  color: #00000036;
+  font-size: 150px;
+  text-align: center;
+}
+.name h2{
+  color: #000000;
+  font-size: 50px;
+  margin-top: -100px;
+  text-align: center;
+}
+
+.name1 h2{
+  color: #000000;
+  font-size: 40px;
+  margin-top: -130px;
+  text-align: center;
+}
+
+
+
+.aboutme {
+  max-width: 750px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .aboutme {
+    padding: 0;
+  }
+}
+
+.quote {
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  margin-left: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #000000;
+  font-family: serif;
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .quote {
+    margin: 0 0 0 -3rem;
+    width: 50%;
+    float: left;
+    padding: 3rem 3rem 3rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .text, .headline {
+    margin-left: 150px;
+  }
+}
+
+
+.download-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.download-button {
+    border: 2px solid #000; /* Button border color */
+    background-color: transparent;
+    color: #000; /* Button text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-button:hover {
+    background-color: #000;
+    color: #ffffff;
+}
+
+.download-button i.download-icon {
+    display: block;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23000" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 9h-4V3H9v6H5l7 7 7-7z"/><path d="M5 18v2h14v-2H5z"/></svg>') no-repeat center;
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.download-button:hover i.download-icon {
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.margin-top-10 {padding-top:10px;}
+.margin-bot-10 {padding-bottom:10px;}
+
+/* Typography */
+/**************************/
+#parallax h1 {font-family:'Oswald', sans-serif; font-size:24px; font-weight:400; text-transform: uppercase; color:black; padding:0; margin:0;}
+#parallax h2 {font-family:'Oswald', sans-serif; font-size:70px; letter-spacing:10px; text-align:center; color:white; font-weight:400; text-transform:uppercase; z-index:10; opacity:.9;}
+#parallax h3 {font-family:'Oswald', sans-serif; font-size:14px; line-height:0; font-weight:400; letter-spacing:8px; text-transform: uppercase; color:black;}
+#parallax p {font-family:'Source Sans Pro', sans-serif; font-weight:400; font-size:14px; line-height:24px;}
+.first-character {font-weight:400; float: left; font-size: 84px; line-height: 64px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family: 'Oswald', sans-serif;}
+
+.sc {color: #3b8595;}
+.ny {color: #3d3c3a;}
+.atw {color: #c48660;}
+
+
+/* Section - Block */
+/**************************/
+#parallax .block {background: white; padding: 60px; width:820px; margin:0 auto; text-align:justify;}
+#parallax .block-gray {background: #f2f2f2;padding: 60px;}
+#parallax .section-overlay-mask {position: absolute; top: 0; left: 0; width: 100%; height: 10%; background-color: black; opacity: 0.70;}
+
+/* Section - Parallax */
+/**************************/
+#parallax .parallax-one {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.18wheelslogistics.com/uploads/blog_post/large/WarehouseSpacevs.IndustrialSpaceWhatstheDifference.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+#parallax .parallax-two {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds");
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#parallax .parallax-three {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cloudfront-us-east-1.images.arcpublishing.com/tgam/T45OACOUMFAMJLHLSCTJII7TPQ.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+/* Extras */
+/**************************/
+#parallax .line-break {border-bottom:1px solid black; width: 150px; margin:0 auto;}
+
+/* Media Queries */
+/**************************/
+@media screen and (max-width: 959px) and (min-width: 768px) {
+  #parallax .block {padding: 40px; width:620px;}
+}
+@media screen and (max-width: 767px) {
+  #parallax .block {padding: 30px; width:420px;}
+  #parallax h2 {font-size:30px;}
+  #parallax .block {padding: 30px;}
+  #parallax .parallax-one, #parallax .parallax-two, #parallax .parallax-three {padding-top:0px; padding-bottom:0px;}
+}
+@media screen and (max-width: 479px) {
+  #parallax .block {padding: 30px 15px; width:290px;}
+}
+
+
+
+
+
+.image-in-text1{
+    font-size: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    background-image: url('https://i.pinimg.com/1200x/13/57/7c/13577c0e68e1a75442dcd7dc80dd666b.jpg');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    mix-blend-mode: multiply;
+}
+.image-in-text2{
+    font-size: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    background-image: url('https://www.darshan.ac.in/U01/Page/Hostel-1.jpg');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    mix-blend-mode: multiply;
+}
+.image-in-text3{
+    font-size: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    background-image: url('https://syos.co/cdn/shop/articles/what-is-a-sound-a-general-reminder-on-sound-waves-919226.jpg?v=1675445269');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    mix-blend-mode: multiply;
+}
+.image-in-text4{
+    font-size: 400px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+    background-image: url('https://www.grhosp.on.ca/assets/images/general/_contentLarge/P1020202.JPG');
+    background-size: cover;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    mix-blend-mode: multiply;
+}
+.project-container {
+    display: flex;
+    width: 60%;
+    margin: 0 auto; /* This centers the div and creates the desired blank space on the sides */
+    box-sizing: border-box; 
+    flex-direction: column;
+}
+
+.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    background-color: #ffffff;
+}
+
+.project-heading {
+    font-size: 24px; /* Large font size for the heading */
+    font-weight: bold;
+    flex-basis: 40%; /* Adjust the width of the heading */
+}
+
+.project-details {
+    flex-basis: 60%; /* Adjust the width of the details */
+}
+
+.project-details ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0;
+}
+
+.project-details li {
+    margin-bottom: 10px; /* Spacing between key points */
+}
+
+@media (max-width: 1024px) {
+    .image-in-text1,
+    .image-in-text2,
+    .image-in-text3,
+    .image-in-text4 {
+        font-size: 240px; /* Smaller font size for larger tablets and small desktops */
+    }
+
+    .project-heading, .project-details {
+        flex-basis: 100%; /* Stack them on top of each other */
+    }
+
+    .project {
+        flex-direction: column;
+        align-items: center; /* Center align the content for better readability */
+    }
+}
+
+@media (max-width: 768px) {
+
+    .image-in-text1,
+    .image-in-text2,
+    .image-in-text3,
+    .image-in-text4{
+        font-size: 180px; /* Further reduce the font size for portrait tablets and large phones */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.skills {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-gap: 10px;
+          padding: 20px;
+          width: 80%;
+          margin: 0 auto; /* This centers the div and creates the desired blank space on the sides */
+          box-sizing: border-box;
+        }
+
+        .skills > div {
+          background-color: #ffffff;
+          color: rgb(0, 0, 0);
+          border-radius: 10px;
+          padding: 10px;
+          border: #ffffff 1px solid;
+          text-align: left;
+          transition: filter 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.342);
+        }
+        .skills h1{
+          margin-top: 10px;
+          font-size: 25px;
+          margin-left: 25px;
+        }
+        .skills p{
+          margin-top: 10px;
+          margin-left: 25px;
+          margin-bottom: 10px;
+          font-size: 18px;
+        }
+
+        .skills div i{
+          padding: 25px;
+        }
+
+        .skills > div i {
+          margin-right: 10px;
+          color: rgb(0, 102, 255);
+          font-size: 50px; /* Adjust the icon size */
+        }
+
+        .skills:hover > div:not(:hover) {
+          filter: blur(5px);
+        }
+
+        .skills > div:hover {
+          box-shadow: 0 0 15px rgb(0, 102, 255);
+          filter: blur(0);
+          z-index: 2;
+        }
+
+        @media (max-width: 900px) {
+          .skills {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 550px) {
+          .skills {
+            grid-template-columns: 1fr;
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+            background-color: #111;
+        }
+
+        .footerContainer{
+            width: 100%;
+            padding: 70px 30px 20px;
+        }
+
+        .socialIcons{
+            display: flex;
+            justify-content: center;
+        }
+
+        .socialIcons a{
+            text-decoration: none;
+            padding: 10px;
+            background-color: white;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        .socialIcons a i{
+            font-size: 2em;
+            color: black;
+            opacity: 0.9;
+        }
+
+        .socialIcons a:hover{
+            background-color: #111;
+            transition: 0.5s;
+        }
+
+        .socialIcons a:hover i{
+            color: white;
+            transition: 0.5s;
+        }
+
+        .footerNav{
+            margin: 30px 0;
+        }
+
+        .footerNav ul{
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+        }
+
+        .footerNav ul li a{
+            color: #fff;
+            margin: 20px;
+            text-decoration: none;
+            font-size: 1.3em;
+            opacity: 0.7;
+            transition: 0.5s;
+        }
+
+        .footerNav ul li a:hover{
+            opacity: 1;
+        }
+
+        .footerBottom{
+            background-color: #000;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        @media(max-width: 700px){
+            .footerNav ul{
+                flex-direction: column;
+            }
+
+            .footerNav ul li{
+                width: 100%;
+                text-align: center;
+                margin: 10px;
+            }
+        }
+
+
+
+        .contact{
+            position:relative;
+            min-height: 10vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.civitatis.com/blog/wp-content/uploads/2020/12/vista-aerea-toronto.jpg");
+            background-size: cover;
+        }
+
+        .contact .content{
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .contact .content h2{
+            font-size: 40px;
+            font-weight: bolder;
+            color: #ffffff;
+        }
+
+        .contact .content p{
+            font-weight: 300;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .container .contantInfo{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container .contactInfo .box{
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+        }
+
+        .contact .contactInfo .box .icon{
+            min-width: 60px;
+            height: 60px;
+            background: #ffffffc5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 22px;
+        }
+
+        .container .contactInfo .box .text{
+            display: flex;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #000000;
+            flex-direction: column;
+            font-weight: 300;
+        }
+
+        .container .contactInfo .box .text h3{
+            font-weight: 500;
+            font-size: 25px;
+            color: #ffffff;
+        }
+
+        .container .contactInfo .box .text p{
+          color: #fff;
+          font-size: 20px;
+        }
+
+        .contactForm{
+            width: 40%;
+            padding: 40px;
+            background: #ffffff70;
+            backdrop-filter: blur(5px);
+            border-radius: 5px;
+        }
+
+        .contactForm h2{
+            font-size: 30px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .contactForm .inputBox{
+            position: relative;
+            width: 100%;
+        }
+
+        .contactForm .inputBox input,
+        .contactForm .inputBox textarea{
+            width: 100%;
+            padding: 5px 0;
+            font-size: 16px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            resize: none;
+        }
+
+        .contactForm .inputBox span{
+            position: absolute;
+            left: 0;
+            padding: 5px 0;
+            font-size: 16px;
+            margin: 10px 0;
+            pointer-events: none;
+            transition: 0.5s;
+            color: #666;
+        }
+
+        .contactForm .inputBox input:focus ~ span,
+        .contactForm .inputBox input:valid ~ span,
+        .contactForm .inputBox textarea:focus ~ span,
+        .contactForm .inputBox textarea:valid ~ span{
+            color: #e91e63;
+            font-size: 12px;
+        }
+
+        .contactForm .inputBox input[type="submit"]{
+            width: 100px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        @media(max-width:991px){
+            .contact{
+                padding: 50px;
+            }
+            .container{
+                flex-direction: column;
+            }
+            .container .contactInfo{
+                margin-bottom: 40px;
+            }
+            .container .contactInfo,
+            .contactForm{
+                width: 100%;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .marquee {
+  overflow: hidden;
+  position: relative; /* Corrected 'center' to 'relative' */
+  width: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0 auto; /* This centers the div and creates the desired blank space on the sides */
+  box-sizing: border-box;
+  white-space: nowrap;
+  background-color: #ffffff; /* Example background color */
+}
+
+.hobby-items {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+.hobby {
+  display: inline-block;
+  margin-right: 50px; /* Adjust spacing between items */
+  font-size: 45px; /* Adjust text size */
+  color: #000000; /* Adjust text color for better visibility */
+}
+
+.hobby img {
+  height: 70px; /* Set a fixed height */
+  width: auto; /* Ensure background is transparent */
+  vertical-align: middle;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  mix-blend-mode: color-burn;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+</style>
+</head>
+<body>
+<div>
+  <div class="container">
+    <div class="pre-loader">
+      <div class="loader"></div>
+      <div class="loader-bg"></div>
+    </div>
+    <div class="loader-content">
+      <div class="count"><p>0</p></div>
+      <div class="copy"><p class="ml16">Utsav</p></div>
+    </div>
+    <div class="loader-2"></div>
+  </div>
+
+  <div class="site-content">
+<br><br><br>
+
+    <div class="header">
+      <h1>U</h1>
+      <h1>t</h1>
+      <h1>s</h1>
+      <h1>a</h1>
+      <h1>v</h1>
+    </div>
+    <div class="name1">
+      <br><br><br><br><br><br>
+      <h2>JHAKHARIYA</h2>
+    </div>
+
+
+  </div>
+
+  <br><br>
+  <br><br>
+
+  <br><br>
+  <div class="name">
+    <h1>About</h1>
+    <h2>RESUME</h2>
+  </div>
+  <br><br>
+  <div class="text lazy-load">
+<div class="aboutme">
+  <header>
+    <h1 class="headline">Web Designer & Developer</h1>
+  </header><br>
+  <div class="text"><p>Hello, I'm Front-end developer with over 2 years of hands-on experience in web design and development. Proven expertise in crafting impactful web designs using a diverse set of front-end languages and tools. Proficient in Figma and Adobe XD for creating engaging UI/UX projects. Demonstrated success in executing independent projects and contributing to large-scale cross-platform initiatives, utilizing various languages and frameworks.
+  </p><br>
+  
+  </div>
+  <blockquote class="quote">
+      Download & Checkout My Resume
+      <div class="download-section">
+          <button id="downloadBtn" class="download-button" onclick="downloadResume()">
+              <span>Download Resume</span>
+              <i class="download-icon"></i>
+          </button>
+      </div>
+  </blockquote>
+  <div class="text">
+      <p>I am currently advancing my skills in WordPress and actively engaged in learning more about full-stack development and cloud computing. I completed a dynamic front-end development internship, showcasing adaptability and effective collaboration within diverse teams. Passionate about continuous learning, I am pursuing further education in web development to become a full-stack developer. Actively involved in freelancing, working on live projects to apply and enhance skills in real-world scenarios.</p>
+      <br>
+      <p>Beyond the technical realm, I am an avid UFC enthusiast with a background in MMA training. Recognized for a creative approach to web development and a commitment to staying abreast of industry trends.</p>
+      <br>
+      <p>I am dedicated to delivering high-quality results and collaborating with cross-functional teams to achieve project goals. Proficient in agile methodologies, I bring strong communication skills, a creative mindset, and a passion for creating modern and user-centric web solutions. I am open to new opportunities and challenges that allow me to contribute my skills and expertise to innovative projects</p>
+  </div>
+</div>
+</div>
+
+<br><br>
+<br><br>
+<br><br>
+<div class="name">
+  <h1>Work</h1>
+  <h2>EXPERIENCE</h2>
+</div>
+<br><br><br>
+
+
+<div id="parallax">
+  
+        <!--
+  <section>
+      <div class="parallax-one">
+        <h2>Warehouse Management System
+        </h2>
+      </div>
+  </section>
+  
+  <section>
+    <div class="block">
+      <p><span class="first-character sc">A</span>ctively contributing as a Front-end Developer in creating efficient and user-centric interfaces.
+      </p>
+      <p class="margin-top-10">Implemented real-time Barcode Scanning feature which allows product's name, quantity and UPC code to be displayed in web application.
+      </p>
+      <p>Applying modern front-end technologies to create user-friendly interface which makes user flow easier.</p>
+    </div>
+  </section>-->
+  
+  <section>
+    <div class="parallax-two">
+      <h2>Website Development</h2>
+    </div>
+  </section>
+  
+  <section>
+    <div class="block">
+      <p><span class="first-character ny">I</span>n the bustling digital landscape of Ontario, Canada, I embarked on a freelance journey that spanned seven transformative months from March to September 2023. During this period, I meticulously crafted an SEO-focused website that stood at the intersection of creativity and technical excellence.</p>
+      <p class="line-break margin-top-10"></p>
+      <p class="margin-top-10">
+        <ul>
+          <li><b>SEO-Enhanced Web Development:</b> Leveraging the robust frameworks of HTML, CSS, JavaScript, and React.js, I engineered a website that was not only a visual treat but also a beacon of functionality. The core objective was to create an online presence that resonated with the target audience through seamless responsiveness and dynamic user interaction.</li>
+          <li><b>Strategic SEO Integration:</b> Understanding the pivotal role of SEO in the digital realm, I employed advanced strategies that encompassed meticulous keyword integration and meta tags optimization. This was not merely a technical exercise but a strategic endeavor to ensure the website's content was both discoverable and engaging.</li>
+          <li><b>User-Centric Design Philosophy:</b> At the heart of this project was a commitment to user engagement. By designing intuitive navigation interfaces and user-centric forms, I aimed to create a digital environment where visitors felt both valued and understood. This approach was pivotal in transforming passive visitors into active participants within the website's ecosystem.</li>
+          <li><b>Impactful Results:</b> The culmination of these efforts was a significant enhancement in the website's organic user traffic, which soared by 20% within just four months of the project's inception. This was a testament not only to the technical strategies employed but also to the holistic understanding of the digital landscape and the behaviors of its inhabitants.</li>
+        </ul>
+      </p>
+    </div>
+  </section>
+  
+  <section>
+    <div class="parallax-three">
+      <h2>Internship</h2>
+    </div>
+  </section>
+  
+  <section>
+    <div class="block">
+      <p><span class="first-character atw">I</span>n the fast-paced digital world, my tenure as a Front-end Development Intern at IIHT Technologies, Gujarat, India, from January 2022 to October 2022, stands as a testament to my journey of growth, collaboration, and innovation. Nestled in the heart of technological advancements, this experience not only sharpened my technical prowess in React.js, Bootstrap, and jQuery but also sculpted me into a team player, adept at navigating the complexities of real-world development scenarios. Here’s a glimpse into the milestones of my internship:</p>
+      <p class="line-break margin-top-10"></p>
+      <p class="margin-top-10">
+        <ul>
+          <li><b>Empowering Digital Realms:</b> Armed with React.js, Bootstrap, and jQuery, I ventured into the domain of web design, creating interfaces that resonated with users by prioritizing accessibility and engagement. My endeavor was to transform static designs into living, breathing web applications that foster meaningful interactions.</li>
+          <li><b>Collaborative Synergy:</b> Immersed in a culture of collaboration, I thrived in a dynamic team environment, embracing Agile methodologies to contribute effectively to our projects. This hands-on experience in a live development setting was instrumental in understanding the essence of teamwork and agile practices in achieving project milestones and functional enhancements.</li>
+          <li><b>User-Centric Design Philosophy:</b> At the core of my design process was an unwavering focus on the user experience. By developing UX prototypes and iterating based on user feedback, I aimed to refine navigation and interface aesthetics, ensuring that each element of the design was intuitive and user-friendly.</li>
+          <li><b>Adapting and Overcoming:</b> Each day presented new challenges, from tight deadlines to evolving project requirements. Embracing these challenges head-on, I adapted, learned, and grew, further solidifying my capabilities as a versatile web developer ready to tackle the challenges of tomorrow’s tech landscape.</li>
+        </ul>
+      </p>
+    </div>
+  </section>
+    
+  </div>
+
+
+<br><br><br>
+
+<br><br>
+<div class="name">
+  <h1>Work</h1>
+  <h2>PROJECTS</h2>
+</div>
+<br><br><br>
+
+<div class="project-container">
+        <div class="project">
+            <div class="image-in-text1">01</div>
+            <div class="project-details">
+              <h1 style="font-weight: bolder;">Alphatronix
+              </h1>
+                <ul>
+                    <li>Orchestrated the creation of a comprehensive ecommerce platform by adeptly employing Full-Stack Development languages, ensuring a robust and scalable online shopping solution.
+                    </li>
+                    <li>Leveraged SQL databases for the structured storage and efficient retrieval of product details, contributing to streamlined inventory management and data integrity.
+                    </li>
+                    <li>Enhanced the online shopping experience by integrating a real-time shopping cart system using PHP, facilitating immediate updates to user purchases and total cost calculations.
+                    </li>
+                    <li>Delivered a responsive web design, enabling optimal accessibility across various devices and ensuring a seamless and user-friendly interface for diverse user demographics.</li>
+                </ul>
+            </div>
+        </div>
+<br>
+        <div class="project">
+            <div class="image-in-text2">02</div>
+            <div class="project-details">
+                <h1 style="font-weight: bolder;">Hostel Application</h1>
+                <ul>
+                    <li>Created a user-focused web application for hostel management that utilises JavaScript, HTML5, CSS3, and other basic web technologies to ensure a seamless and intuitive user experience.
+                    </li>
+                    <li>Shown proficiency in front-end development and innovative web design, utilising frameworks like Bootstrap to offer both functionality and aesthetic appeal.
+                    </li>
+                    <li>Employed a methodical approach to problem-solving to address and get past technical challenges; shown strong project management skills to finish the application in the allocated time.</li>
+                </ul>
+            </div>
+        </div>
+<br>
+        <div class="project">
+            <div class="image-in-text3">03</div>
+            <div class="project-details">
+              <h1 style="font-weight: bolder;">Sound ON
+              </h1>
+                <ul>
+                  <li>Pioneered the integration of voice recognition technology to advance interactive capabilities within a music application, enhancing user engagement.
+                  </li>
+                  <li>Innovated in user interface design, delivering a creative and modern aesthetic that streamlined user interactions and improved the overall experience.
+                  </li>
+                  <li>Developed and refined song-matching algorithms, enabling efficient voice-to-tune search functionality and elevating the ease of music discovery.</li>    
+                </ul>
+            </div>
+        </div>
+        <br>
+                <div class="project">
+                    <div class="image-in-text4">04</div>
+                    <div class="project-details">
+                      <h1 style="font-weight: bolder;">Hospital Management System
+                      </h1>
+                        <ul>
+                          <li>Spearheaded the development of a comprehensive patient data management system, ensuring meticulous record-keeping of personal and medical histories in alignment with healthcare compliance standards.
+                          </li>
+                          <li>Leveraged advanced SQL databases for real-time updates and rapid retrieval of patient information, enhancing the efficiency and accuracy of hospital operations.
+                          </li>
+                          <li>Engineered a robust multi-user access control system, enabling secure and role-specific access to treatment details for hospital staff and patients, bolstering system security and privacy protocols.</li>    
+                        </ul>
+                    </div>
+                </div>  
+    </div>
+
+    <br><br>
+    <br><br>
+    <br><br>
+
+
+
+
+
+
+    <div class="marquee">
+      <div class="hobby-items">
+        <div class="hobby"><img src="https://freepngimg.com/download/icon/travel/75802-travel-global-illustration-landmark-drawing-icon.png" alt="Traveling">Traveling</div>
+        <div class="hobby"><img src="https://www.creativefabrica.com/wp-content/uploads/2020/12/29/Podcast-icon-Graphics-7431540-1-1-580x386.jpg" alt="Podcast">Podcast</div>
+        <div class="hobby"><img src="https://user-images.githubusercontent.com/17777237/54872929-c67d0b80-4dd4-11e9-83ed-9b6e88fe065a.jpg" alt="UFC & MMA">UFC & MMA</div>
+        <div class="hobby"><img src="https://static.vecteezy.com/system/resources/previews/017/064/096/original/weight-gym-icon-free-vector.jpg" alt="GYM">GYM</div>
+        <div class="hobby"><img src="https://cdn-icons-png.freepik.com/512/1181/1181018.png" alt="Coding/Programming">Programming</div>
+        <div class="hobby"><img src="https://static.thenounproject.com/png/1113228-200.png" alt="Drawing">Art</div>
+        <div class="hobby"><img src="https://freepngimg.com/download/icon/travel/75802-travel-global-illustration-landmark-drawing-icon.png" alt="Traveling">Traveling</div>
+        <div class="hobby"><img src="https://www.creativefabrica.com/wp-content/uploads/2020/12/29/Podcast-icon-Graphics-7431540-1-1-580x386.jpg" alt="Podcast">Podcast</div>
+        <div class="hobby"><img src="https://user-images.githubusercontent.com/17777237/54872929-c67d0b80-4dd4-11e9-83ed-9b6e88fe065a.jpg" alt="UFC & MMA">UFC & MMA</div>
+        <div class="hobby"><img src="https://static.vecteezy.com/system/resources/previews/017/064/096/original/weight-gym-icon-free-vector.jpg" alt="GYM">GYM</div>
+        <div class="hobby"><img src="https://cdn-icons-png.freepik.com/512/1181/1181018.png" alt="Coding/Programming">Programming</div>
+        <div class="hobby"><img src="https://static.thenounproject.com/png/1113228-200.png" alt="Drawing">Art</div>
+           
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <br><br>
+    <br><br>
+    <div class="name">
+      <h1>Skill</h1>
+      <h2>SKILLS</h2>
+    </div>
+    <br><br><br>
+    <div class="skills">
+      <div class="skil1"><i class="fas fa-code"></i>
+        <h1>Programming Languages</h1>
+          <p>HTML, CSS</p>
+          <p>JavaScript</p>
+          <p>Python</p>
+          <p>PHP</p>
+          <p>C++</p>
+          <p>SQL</p>
+      </div>
+      <div class="skil2"><i class="fas fa-laptop-code"></i>
+        <h1>Front-End Technologies & Frameworks</h1>
+          <p>React</p>
+          <p>jQuery</p>
+          <p>Bootstrap</p>
+          <p>SASS & CSS Preprocessors</p>
+          <p>Responsive Design (Media Queries, Flexbox, Grid Layout)</p>
+      </div>
+      <div class="skil3"><i class="fas fa-tools"></i>
+        <h1>Front-End Optimization & Testing</h1>
+          <p>Cross-Browser Testing & Compatibility</p>
+        <p>Lazy Loading </p>
+        <p>Code Splitting</p>
+        <p>Responsive Testing</p><p> Browser Testing</p>
+      </div>
+      <div class="skil4"><i class="fas fa-server"></i>
+        <h1>Back-End Technologies</h1>
+          <p>Node.js</p>
+          <p>.NET</p>
+          <p>ASP.NET</p>
+      </div>
+      <div class="skil5"><i class="fas fa-database"></i>
+        <h1>Database Management</h1>
+          <p>MySQL</p>
+          <p>MongoDB</p>
+          <p>Firebase</p>
+      </div>
+      <div class="skil6"><i class="fas fa-code-branch"></i>
+        <h1>Version Control & Collaboration</h1>
+          <p>Git</p>
+          <p>GitHub</p>
+          <p>GitLab</p>
+          <p>Agile Methodology & Scrum</p>
+      </div>
+      <div class="skil7"><i class="fas fa-pencil-ruler"></i>
+        <h1>Design & UX/UI</h1>
+          <p>Figma, Sketch, Adobe XD<p>
+          <p>Adobe Photoshop, Adobe Illustrator</p>
+          <p>UX/UI Principles, Wireframing, Prototyping<p>
+          <p>User-Centered Design (UCD), Interaction Design</p>
+          <p>Responsive Design, Mobile Design, Tablet Design<p>
+          <p>E-commerce Design, Landing Page Design</p>
+          <p>Design Trends & Techniques (Material Design, Flat Design, Grid Systems)</p>
+      </div>
+      <div class="skil8"><i class="fas fa-search-dollar"></i>
+        <h1>SEO & Marketing</h1>
+          <p>SEO Principles</p>
+        <p>Digital Marketing</p>
+        <p>Social Media Design</p>
+      </div>
+      <div class="skil9"><i class="fas fa-users"></i>
+        <h1>Soft Skills</h1>
+          <p>Teamwork, Communication, Problem-Solving<p>
+        <p> Creativity, Adaptability<p>
+        <p> Critical Thinking, Time Management<p>
+        <p> Project Management, Analytical Skills<p>
+        <p> Attention to Detail</p>
+      </div>
+  </div>
+    <br><br><br><br>
+<div class="name">
+  <h1>Contact</h1>
+  <h2>Contact Info</h2>
+</div>
+<br><br><br>
+<section class="contact">
+  <div class="container">
+      <div class="contactInfo">
+          <div class="box">
+              <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+              <div class="text">
+                  <h3>Address</h3>
+                  <p>299 Doon Valley Dr, Kitchener, ON N2G 4M4&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+
+              </div>
+          </div>
+          <div class="box">
+              <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+              <div class="text">
+                  <h3>Phone</h3>
+                  <p>+1 (647) 409 6236</p>
+                  
+              </div>
+          </div>
+          <div class="box">
+              <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+              <div class="text">
+                  <h3>Email</h3>
+                  <p>utsavj277@gmail.com</p>
+                  
+              </div>
+          </div>
+      </div>
+      <div class="contactForm">
+          <form>
+              <h2>Send Message</h2>
+              <div class="inputBox">
+                  <input type="text" name="" required="required">
+                  <span>&nbsp Full Name</span>
+              </div>
+              <div class="inputBox">
+                  <input type="text" name="" required="required">
+                  <span>&nbsp Email</span>
+              </div>
+              <div class="inputBox">
+                  <input required="required"></input>
+                  <span>&nbsp Type your message</span>
+              </div>
+              <div class="inputBox">
+                  <input type="submit" name="" value="Send">
+              </div>
+          </form>
+      </div>
+  </div>
+</section>
+
+<footer>
+<div class="footerContainer">
+  <div class="socialIcons">
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+  </div>
+
+  <div class="footerNav">
+      <ul>
+          <li><a href="">About Me</a></li>
+          <li><a href="">Experience</a></li>
+          <li><a href="">Projects</a></li>
+          <li><a href="">Skills</a></li>
+          <li><a href="">Contact</a></li>
+      </ul>
+  </div>
+</div>
+<div class="footerBottom">
+  <p>Copyright &copy; 2024; Designed by <span class="designer">Utsav Jhakhariya</span></p>
+</div>
+</footer>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script></script>
+
+</body>
+
+<script>
+ 
+ function startLoader() {
+    let counterElement = document.querySelector(".count p");
+    let currentValue = 0;
+
+    // Function to update the counter
+    function updateCounter() {
+      if (currentValue < 100) {
+        let increment = Math.floor(Math.random() * 10) + 1;
+        currentValue = Math.min(currentValue + increment, 100);
+        counterElement.textContent = `${currentValue}%`;
+        // Use setTimeout to keep updating the counter with a delay
+        setTimeout(updateCounter, 50); // Adjust the speed as needed
+      } else {
+        // Once the count reaches 100, hide the pre-loader and show the content
+        document.querySelector(".pre-loader").style.display = 'none';
+        document.querySelector(".site-content").style.visibility = 'visible';
+      }
+    }
+
+    updateCounter();
+  }
+
+  startLoader();
+
+  // Initialize GSAP animations as before, adjusting as necessary
+  gsap.to(".count", { opacity: 0, delay: 3.5, duration: 0.5 });
+
+
+
+
+
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+  var lazyLoadElements = document.querySelectorAll(".lazy-load");
+
+  if ("IntersectionObserver" in window) {
+    let lazyObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("lazy-load");
+
+          // Optionally, load or change content dynamically here
+
+          lazyObserver.unobserve(entry.target);
+        }
+      });
+    });
+
+    lazyLoadElements.forEach(function(element) {
+      lazyObserver.observe(element);
+    });
+  } else {
+    // Fallback for browsers not supporting Intersection Observer
+    // Immediately load all content
+    lazyLoadElements.forEach(function(element) {
+      element.classList.remove("lazy-load");
+    });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+ let textWrapper = document.querySelector(".ml16");
+ textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+ anime.timeline({loop:false})
+ .add({
+    targets: '.ml16 .letter',
+    translateY: [-100, 0],
+    easing: "easeOutExpo",
+    duration: 1500,
+    delay: (el, i)=>30*i
+ })
+
+ .add({
+    targets: '.ml16 .letter',
+    translateY: [0, 100],
+    easing: "easeOutExpo",
+    duration: 3000,
+    delay: (el, i)=>2000 + 30 * i
+ });
+
+ gsap.to(".pre-loader", {
+  scale: 0.5,
+  ease: "power4.inOut",
+  duration: 2,
+  delay: 3
+ })
+
+ gsap.to(".loader",{
+  height: "0",
+  ease: "power4.inOut",
+  duration: 1.5,
+  delay: 3.75
+ })
+
+ gsap.to(".loader-bg", {
+  height: "0",
+  ease:"power4.inOut",
+  duration: 1.5,
+  delay: 4
+ })
+
+ gsap.to(".loader-2", {
+  clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+  ease:"power4.inOut",
+  duration: 1.5,
+  delay: 3.5
+ })
+
+ gsap.from(".header h1", {
+  y: 200,
+  ease: "power4.inOut",
+  duration: 1.5,
+  delay: 3.75,
+  stagger: 0.05
+ })
+
+gsap.to(".img",{
+  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  ease: "power4.inOut",
+  duration: 1.5,
+  delay: 4.5,
+  stagger: 0.25
+})
+
+
+</script>
+</html>
